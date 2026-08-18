@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>登录 · 智能指法打字训练</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-body">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div class="lg-icon">⌨️</div>
+      <div class="lg-name">智能指法打字训练</div>
+      <div class="lg-sub">登录后开始你的指法训练之旅</div>
+    </div>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tabLogin">登录</button>
+      <button class="auth-tab" id="tabRegister">注册</button>
+    </div>
+
+    <!-- 登录表单 -->
+    <form class="auth-form" id="formLogin" novalidate>
+      <div class="field">
+        <label for="loginAccount">账号</label>
+        <input type="text" id="loginAccount" placeholder="邮箱或手机号" autocomplete="username">
+      </div>
+      <div class="field">
+        <label for="loginPassword">密码</label>
+        <input type="password" id="loginPassword" placeholder="请输入密码" autocomplete="current-password">
+      </div>
+      <div class="forgot-row"><button type="button" class="link-btn" id="btnForgot">忘记密码？</button></div>
+      <div class="auth-error" id="loginError"></div>
+      <button type="submit" class="btn auth-submit">登 录</button>
+    </form>
+
+    <!-- 注册表单（三步滑动向导） -->
+    <form class="auth-form" id="formRegister" style="display:none" novalidate>
+      <div class="reg-slider">
+        <div class="reg-steps-track" id="regTrack">
+          <!-- 第 1 步：基本信息 -->
+          <div class="reg-step">
+            <div class="reg-step-title">第 <b>1</b> 步 · 基本信息</div>
+            <div class="field">
+              <label for="regUsername">昵称</label>
+              <input type="text" id="regUsername" placeholder="给自己起个昵称" autocomplete="nickname">
+            </div>
+            <div class="reg-type-tabs">
+              <button type="button" class="reg-type-tab active" data-type="email">邮箱注册</button>
+              <button type="button" class="reg-type-tab" data-type="phone">手机号注册</button>
+            </div>
+            <div class="field">
+              <label for="regAccount" id="regAccountLabel">邮箱</label>
+              <input type="text" id="regAccount" placeholder="用于登录的邮箱" autocomplete="email">
+            </div>
+          </div>
+          <!-- 第 2 步：设置密码 -->
+          <div class="reg-step">
+            <div class="reg-step-title">第 <b>2</b> 步 · 设置密码</div>
+            <div class="field">
+              <label for="regPassword">密码</label>
+              <input type="password" id="regPassword" placeholder="至少6位，需含字母和数字" autocomplete="new-password">
+            </div>
+            <div class="field">
+              <label for="regPassword2">确认密码</label>
+              <input type="password" id="regPassword2" placeholder="再次输入密码" autocomplete="new-password">
+            </div>
+          </div>
+          <!-- 第 3 步：安全问题 -->
+          <div class="reg-step">
+            <div class="reg-step-title">第 <b>3</b> 步 · 安全问题</div>
+            <div class="field">
+              <label for="regSecQ">安全问题（用于找回密码）</label>
+              <select id="regSecQ" class="auth-select"></select>
+            </div>
+            <div class="field">
+              <label for="regSecA">安全答案</label>
+              <input type="text" id="regSecA" placeholder="填写答案，请牢记" autocomplete="off">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reg-progress" id="regProgress">
+        <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+      <div class="auth-error" id="regError"></div>
+      <div class="reg-nav">
+        <button type="button" class="btn ghost" id="regPrev" style="display:none">上一步</button>
+        <button type="button" class="btn" id="regNext">下一步</button>
+        <button type="submit" class="btn auth-submit" id="regSubmit" style="display:none">注 册</button>
+      </div>
+    </form>
+
+    <!-- 忘记密码表单 -->
+    <form class="auth-form" id="formForgot" style="display:none" novalidate>
+      <div class="field">
+        <label for="forgotAccount">账号</label>
+        <input type="text" id="forgotAccount" placeholder="注册时用的邮箱或手机号">
+      </div>
+      <div class="field" id="forgotQField" style="display:none">
+        <label>安全问题</label>
+        <div class="sec-question" id="forgotQuestion"></div>
+        <input type="text" id="forgotAnswer" placeholder="请输入安全答案">
+      </div>
+      <div class="field" id="forgotPw1" style="display:none">
+        <label for="forgotPassword">新密码</label>
+        <input type="password" id="forgotPassword" placeholder="至少6位，需含字母和数字">
+      </div>
+      <div class="field" id="forgotPw2" style="display:none">
+        <label for="forgotPassword2">确认新密码</label>
+        <input type="password" id="forgotPassword2" placeholder="再次输入新密码">
+      </div>
+      <div class="auth-error" id="forgotError"></div>
+      <button type="submit" class="btn auth-submit" id="forgotSubmit">下一步</button>
+      <button type="button" class="btn ghost block" id="btnBackLogin">← 返回登录</button>
+    </form>
+
+    <div class="auth-note">
+      账号数据保存在<b>本机浏览器</b>中（纯静态托管方案）。<br>
+      支持邮箱或手机号注册登录，请牢记账号、密码与安全答案，清除浏览器数据会导致账号丢失。
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
